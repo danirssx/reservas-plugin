@@ -39,3 +39,35 @@ function sr_enqueue_scripts()
     );
 }
 add_action("wp_enqueue_scripts", "sr_enqueue_scripts");
+
+// Admin menu
+function sr_admin_menu()
+{
+    add_menu_page(
+        "Reservas",
+        "Reservas",
+        "manage_options",
+        "sr-reservas",
+        "sr_mostrar_reservas"
+    );
+}
+add_action("admin_menu", "sr_admin_menu");
+
+function sr_mostrar_reservas()
+{
+    $reservas = sr_obtener_reservas();
+
+    echo "<h1>Reservas</h1>";
+    echo "<table>";
+    echo "<tr><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Fecha</th><th>Hora</th></tr>";
+    foreach ($reservas as $reserva) {
+        echo "<tr>
+                <td>{$reserva["nombre"]}</td>
+                <td>{$reserva["email"]}</td>
+                <td>{$reserva["telefono"]}</td>
+                <td>{$reserva["fecha"]}</td>
+                <td>{$reserva["hora"]}</td>
+            </tr>";
+    }
+    echo "</table>";
+}
