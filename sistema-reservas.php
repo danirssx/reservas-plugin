@@ -8,9 +8,7 @@
  */
 
 // Evitar el directo acceso al archivo
-if (!defined(" ABSPATH ")) {
-    exit();
-}
+defined("ABSPATH") || exit(); // Prevent direct access to the file.
 
 // Carga de archivos
 include_once plugin_dir_path(__FILE__) . "includes/sr-database.php";
@@ -23,22 +21,29 @@ function sr_activate_plugin()
 }
 register_activation_hook(__FILE__, "sr_activate_plugin");
 
-// Registrar scripts
-function sr_enqueue_scripts()
+// React
+function render_reservas_app()
 {
-    wp_enqueue_style(
-        "sr-styles",
-        plugin_dir_url(__FILE__) . "assets/styles.css"
-    );
+    // Asegúrate de que el script y estilos de React estén encolados.
     wp_enqueue_script(
-        "sr-scripts",
-        plugin_dir_url(__FILE__) . "assets/scripts.js",
-        ["jquery"],
-        null,
-        true
+        "reservas-script", // Identificador único del script
+        plugins_url("build/index-CoNGDpaZ.js", __FILE__), // Ruta del script generado
+        [], // Dependencias (React, ReactDOM, etc., si es necesario)
+        "1.0", // Versión
+        true // Coloca el script en el footer
     );
+
+    wp_enqueue_style(
+        "reservas-styles", // Identificador único de estilos
+        plugins_url("build/index-C6G_3qQV.css", __FILE__), // Ruta de los estilos generados
+        [], // Dependencias de estilo
+        "1.0" // Versión
+    );
+
+    // Devuelve el contenedor donde React montará la aplicación.
+    return '<div id="reservas-root"></div>';
 }
-add_action("wp_enqueue_scripts", "sr_enqueue_scripts");
+add_shortcode("reservas_app", "render_reservas_app");
 
 // Admin menu
 function sr_admin_menu()
