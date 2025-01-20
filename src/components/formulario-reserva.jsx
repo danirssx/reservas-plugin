@@ -31,8 +31,7 @@ function FormularioReserva() {
       />
 
       <label>Nota:</label>
-      <input
-        type="text"
+      <textarea
         value={reserva.nota}
         onChange={(e) => setReserva({ ...reserva, nota: e.target.value })}
         className="rounded-md border"
@@ -74,7 +73,7 @@ function FormularioReserva() {
 
       <label>Hora:</label>
       <input
-        type="datetime-local"
+        type="time"
         value={reserva.hora}
         onChange={(e) =>
           setReserva({
@@ -85,7 +84,10 @@ function FormularioReserva() {
         className="rounded-md border"
       />
 
-      <button type="submit" className="rounded-lg bg-red-400 p-2 font-bold">
+      <button
+        type="submit"
+        className="rounded-lg bg-red-400 p-2 font-bold text-white mt-2"
+      >
         Enviar
       </button>
     </form>
