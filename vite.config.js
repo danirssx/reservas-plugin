@@ -5,18 +5,24 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: "build",
-    assetsDir: "", // Prevents creating an assets subdirectory
+    assetsDir: "",
     rollupOptions: {
-      input: "./src/index.jsx", // Entry point for your React app
+      input: "./src/index.jsx",
       output: {
-        entryFileNames: "index.[hash].js", // Ensures hashed filename for the main JS file
+        entryFileNames: "index.[hash].js",
         assetFileNames: (assetInfo) => {
-          // Ensures hashed filenames for CSS files
           if (assetInfo.name && assetInfo.name.endsWith(".css")) {
             return "index.[hash][extname]";
           }
           return "[name].[hash][extname]";
         },
+      },
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      css: {
+        additionalData: `@import "./src/index.css";`,
       },
     },
   },

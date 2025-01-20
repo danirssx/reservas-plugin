@@ -3,9 +3,8 @@ import FormularioReserva from "./components/formulario-reserva";
 
 const App = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-red-100">
+    <div className="flex items-center justify-center">
       <FormularioReserva />
-      <h1>GAY</h1>
     </div>
   );
 };

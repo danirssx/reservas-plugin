@@ -21,12 +21,13 @@ function FormularioReserva() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-2 rounded-s">
+    <form onSubmit={handleSubmit} className="p-2 flex flex-col justify-between">
       <label>Nombre:</label>
       <input
         type="text"
         value={reserva.nombre}
         onChange={(e) => setReserva({ ...reserva, nombre: e.target.value })}
+        className="rounded-md border"
       />
 
       <label>Nota:</label>
@@ -34,6 +35,7 @@ function FormularioReserva() {
         type="text"
         value={reserva.nota}
         onChange={(e) => setReserva({ ...reserva, nota: e.target.value })}
+        className="rounded-md border"
       />
 
       <label>Email:</label>
@@ -41,6 +43,7 @@ function FormularioReserva() {
         type="text"
         value={reserva.email}
         onChange={(e) => setReserva({ ...reserva, email: e.target.value })}
+        className="rounded-md border"
       />
 
       <label>Telefono:</label>
@@ -53,6 +56,7 @@ function FormularioReserva() {
             telefono: e.target.value,
           })
         }
+        className="rounded-md border"
       />
 
       <label>Fecha:</label>
@@ -65,6 +69,7 @@ function FormularioReserva() {
             fecha: e.target.value,
           })
         }
+        className="rounded-md border"
       />
 
       <label>Hora:</label>
@@ -77,7 +82,12 @@ function FormularioReserva() {
             hora: e.target.value,
           })
         }
+        className="rounded-md border"
       />
+
+      <button type="submit" className="rounded-lg bg-red-400 p-2 font-bold">
+        Enviar
+      </button>
     </form>
   );
 }
