@@ -27,20 +27,23 @@ register_activation_hook(__FILE__, "sr_activate_plugin");
 // React
 function render_reservas_app()
 {
-    // Asegúrate de que el script y estilos de React estén encolados.
+    $plugin_dir = plugin_dir_path(__FILE__) . "build/";
+    $js_file = glob($plugin_dir . "index.*.js")[0];
+    $css_file = glob($plugin_dir . "index.*.css")[0];
+
     wp_enqueue_script(
-        "reservas-script", // Identificador único del script
-        plugins_url("build/index-CoNGDpaZ.js", __FILE__), // Ruta del script generado
-        [], // Dependencias (React, ReactDOM, etc., si es necesario)
-        "1.0", // Versión
-        true // Coloca el script en el footer
+        "reservas-app",
+        plugins_url("build/" . basename($js_file), __FILE__),
+        [],
+        null, // Null ensures WordPress doesn't cache the version
+        true
     );
 
     wp_enqueue_style(
-        "reservas-styles", // Identificador único de estilos
-        plugins_url("build/index-C6G_3qQV.css", __FILE__), // Ruta de los estilos generados
-        [], // Dependencias de estilo
-        "1.0" // Versión
+        "reservas-style",
+        plugins_url("build/" . basename($css_file), __FILE__),
+        [],
+        null
     );
 
     // Devuelve el contenedor donde React montará la aplicación.

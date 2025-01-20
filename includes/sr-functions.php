@@ -31,17 +31,17 @@ function sr_obtener_reservas()
     );
 }
 
-// Shortcode
-function sr_formulario_shortcode()
-{
-    if ($_POST && !empty($_POST["nombre"])) {
-        sr_guardar_reserva($_POST);
-        echo "<p>!Reserva guardada exitosamente!</p>";
-    }
+// // Shortcode
+// function sr_formulario_shortcode()
+// {
+//     if ($_POST && !empty($_POST["nombre"])) {
+//         sr_guardar_reserva($_POST);
+//         echo "<p>!Reserva guardada exitosamente!</p>";
+//     }
 
-    ob_start();
-    include plugin_dir_path(__FILE__) . "../templates/form.php";
-    return ob_get_clean();
-}
+//     ob_start();
+//     include plugin_dir_path(__FILE__) . "../templates/form.php";
+//     return ob_get_clean();
+// }
 
-add_shortcode("formulario_reservas", "sr_formulario_shortcode");
+// add_shortcode("formulario_reservas", "sr_formulario_shortcode");
