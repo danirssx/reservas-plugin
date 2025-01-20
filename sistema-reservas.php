@@ -14,6 +14,9 @@ defined("ABSPATH") || exit(); // Prevent direct access to the file.
 include_once plugin_dir_path(__FILE__) . "includes/sr-database.php";
 include_once plugin_dir_path(__FILE__) . "includes/sr-functions.php";
 
+// Endpoints
+require_once plugin_dir_path(__FILE__) . "includes/api-endpoints.php";
+
 // Registrar la activación del plugin
 function sr_activate_plugin()
 {
